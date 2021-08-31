@@ -11,5 +11,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.eclipse.californium:californium-core:1.1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.californium:element-connector:1.1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.25.Final" level="project" />
   </component>
 </module>

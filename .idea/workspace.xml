@@ -3,40 +3,98 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="" />
+    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Project creation">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_all_4_1_25_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_californium_californium_core_1_1_0_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_californium_element_connector_1_1_0_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/coap/CoapRegistrationHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/coap/CollectorCoapServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/database/DBManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/database/DBManagerFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoapImplementation/Sensors/actuatorNode.c" beforeDir="false" afterPath="$PROJECT_DIR$/CoapImplementation/Sensors/actuatorNode.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoapImplementation/Sensors/resources/actuator.c" beforeDir="false" afterPath="$PROJECT_DIR$/CoapImplementation/Sensors/resources/actuator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoapImplementation/Sensors/resources/temperature.c" beforeDir="false" afterPath="$PROJECT_DIR$/CoapImplementation/Sensors/resources/temperature.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoapImplementation/Sensors/sensorNode.c" beforeDir="false" afterPath="$PROJECT_DIR$/CoapImplementation/Sensors/sensorNode.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/Collector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/Collector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MqttImplementation/Sensors/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/Makefile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="a3afb2e2-1a12-4a61-966f-20bd8375849f" />
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+        <option name="usePluginRegistry" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1xJaAUGNepwozhqxHd1vm22hPQK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="iot.unipi.it.database" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -50,29 +108,71 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630075503146</updated>
-      <workItem from="1630075504211" duration="6431000" />
+      <workItem from="1630075504211" duration="6541000" />
+      <workItem from="1630163796658" duration="3643000" />
+      <workItem from="1630415332995" duration="3511000" />
+      <workItem from="1630420358101" duration="5369000" />
     </task>
+    <task id="LOCAL-00001" summary="Project creation">
+      <created>1630083066985</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1630083066985</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Project creation">
+      <created>1630083132007</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1630083132007</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Project creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project creation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630082977885">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630082977885" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1630083030134">
+    <state x="721" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1630423557628">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630083030134" />
+    <state x="721" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630423557628" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1630420341075">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630420341075" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1630083133834">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630083133834" />
     <state x="342" y="140" key="new project wizard" timestamp="1630075538608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="140" key="new project wizard/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630075538608" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1630077168798">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1630427514287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630077168798" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630427514287" />
   </component>
 </project>

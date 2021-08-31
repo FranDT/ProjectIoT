@@ -33,7 +33,6 @@ void client_chunk_handler(coap_message_t *response){
 
 extern coap_resource_t res_temperature;
 static struct etimer et;
-double temperature = 21.0;
 bool ascending = true;
 bool actuating = false;
 
@@ -53,13 +52,14 @@ PROCESS_THREAD(tempNode, ev, data){
 
     static coap_endpoint_t server_ep;
     static coap_message_t request[1];
+    temperature = 21.0;
 
     PROCESS_BEGIN();
 
     coap_endpoint_parse(SERVER_EP, strlen(SERVER_EP), &server_ep);
 
     coap_init_message(request, COAP_TYPE_CON, COAP_POST, 0);
-    coap_set_header_uri_path(request, "");
+    coap_set_header_uri_path(request, "registration");
 
     LOG_INFO("Registering to the CoAP server\n");
     COAP_BLOCKING_REQUEST(&server_ep, request, client_chunk_handler);
