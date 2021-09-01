@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.californium:element-connector:1.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/californium/element-connector/1.1.0-SNAPSHOT/element-connector-1.1.0-20190602.023231-548.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/californium/element-connector/1.1.0-SNAPSHOT/element-connector-1.1.0-20190602.023231-548-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/californium/element-connector/1.1.0-SNAPSHOT/element-connector-1.1.0-20190602.023231-548-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
