@@ -263,7 +263,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                 if(temperature >= TARGET_TEMP)
                     actuating = false;
 		    }
-		    res_temperature.trigger();
+		    // res_temperature.trigger();
 		    // etimer_reset(&et);
 				
 			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
