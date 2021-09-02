@@ -70,7 +70,7 @@ static char client_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
 static char sub_topic[BUFFER_SIZE];
 
-static float temperature = 21.0;
+static double temperature = 21.0;
 bool ascending = true;
 bool actuating = false;
 
@@ -172,6 +172,13 @@ have_connectivity(void)
   return true;
 }
 
+void set_ascending(){
+    random_init(node_id);
+    unsigned short r = random_rand();
+    if(r % 2 != 0)
+        ascending = false;
+}
+
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(mqtt_client_process, ev, data)
 {
@@ -195,6 +202,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                   MAX_TCP_SEGMENT_SIZE);
 				  
   state=STATE_INIT;
+
+  set_ascending();
 				    
   // Initialize periodic timer to check the status 
   etimer_set(&periodic_timer, STATE_MACHINE_PERIODIC);
@@ -263,8 +272,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                 if(temperature >= TARGET_TEMP)
                     actuating = false;
 		    }
-		    // res_temperature.trigger();
-		    // etimer_reset(&et);
 				
 			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);

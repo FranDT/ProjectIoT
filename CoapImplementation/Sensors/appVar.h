@@ -1,1 +1,1 @@
-extern int temperature;
+extern double temperature;

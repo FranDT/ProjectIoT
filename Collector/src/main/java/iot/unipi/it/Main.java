@@ -31,5 +31,6 @@ public class Main {
     public static void main(String[] args){
         db = DBManagerFactory.createDBManager(URL, DB_user, DB_password);
         runCoapServer();
+        runMqtt();
     }
 }

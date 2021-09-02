@@ -7,6 +7,11 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="Eclipse PahoRepo" />
+      <option name="name" value="Eclipse PahoRepo" />
+      <option name="url" value="https://repo.eclipse.org/content/repositories/paho-releases/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="repo.eclipse.org" />
       <option name="name" value="Californium Repository" />
       <option name="url" value="https://repo.eclipse.org/content/repositories/californium/" />
