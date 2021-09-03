@@ -9,4 +9,8 @@ public class DBManagerFactory {
             dbInstance = new DBManager(URL, user, password);
         return dbInstance;
     }
+
+    public static DBManager getDbInstance(){
+        return dbInstance;
+    }
 }
