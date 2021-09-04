@@ -253,7 +253,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 			// Publish something
 		    sprintf(pub_topic, "%s", "temperature");
 			
-			sprintf(app_buffer, "Temperature: %d", temperature);
+			sprintf(app_buffer, "Temperature: %f", temperature);
 
 		    if(ascending && !actuating){
 		        temperature = temperature + 0.1;

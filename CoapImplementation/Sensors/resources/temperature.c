@@ -27,7 +27,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response, u
 
     if(accept == -1 || accept == APPLICATION_JSON){
         coap_set_header_content_format(response, APPLICATION_JSON);
-        sprintf((char *)buffer, "{\"temperature\": %d, \"timestamp\": %lu", temperature, clock_seconds());
+        sprintf((char *)buffer, "{\"temperature\": %f, \"timestamp\": %lu", temperature, clock_seconds());
         coap_set_payload(response, buffer, strlen((char*)buffer));
     }
     else{

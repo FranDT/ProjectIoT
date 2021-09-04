@@ -31,6 +31,7 @@ void client_chunk_handler(coap_message_t *response){
 #define MIN_TEMP 18
 #define TARGET_TEMP 21
 
+double temperature = 21.0;
 extern coap_resource_t res_temperature;
 static struct etimer et;
 bool ascending = true;
@@ -79,7 +80,7 @@ PROCESS_THREAD(tempNode, ev, data){
                 temperature = temperature - 0.1;
                 if(temperature <= TARGET_TEMP)
                     actuating = false;
-		    }else if(descending && !actuating){
+		    }else if(!ascending && !actuating){
                 temperature = temperature - 0.1;
                 if(temperature <= MIN_TEMP)
                     actuating = true;
