@@ -22,9 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Project creation">
+    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Bug fixes">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_26.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_09_2021_18_17__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_09_2021_18_17__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_09_21__18_49__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_09_21__18_49__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-actuator.c" beforeDir="false" afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-actuator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/Collector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/Collector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/database/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/database/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +69,6 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RecentsManager">
@@ -73,13 +77,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,9 +109,6 @@
       <workItem from="1630587806830" duration="2574000" />
       <workItem from="1630659457067" duration="1471000" />
       <workItem from="1630679523520" duration="5782000" />
-      <workItem from="1630687853106" duration="733000" />
-      <workItem from="1630692400552" duration="62000" />
-      <workItem from="1630744305280" duration="3568000" />
     </task>
     <task id="LOCAL-00001" summary="Project creation">
       <created>1630083066985</created>
@@ -149,5 +152,39 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project creation" />
     <option name="LAST_COMMIT_MESSAGE" value="Project creation" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630082977885">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630082977885" />
+    <state x="721" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1630423557628">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="721" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630423557628" />
+    <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1630684071566">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630684071566" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1630680736687">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630680736687" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1630429457710">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630429457710" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1630587880439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630587880439" />
+    <state x="342" y="140" key="new project wizard" timestamp="1630075538608">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630075538608" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1630681610877">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630681610877" />
   </component>
 </project>

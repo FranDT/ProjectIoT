@@ -3,13 +3,15 @@ package iot.unipi.it.mqtt;
 import org.eclipse.paho.client.mqttv3.*;
 
 public class CollectorMqtt implements MqttCallback {
-    public CollectorMqtt() {
-        String topic        = "temperature";
-        String broker       = "tcp://127.0.0.1:1883";
-        String clientId     = "Collector";
 
+    private String topic = "temperature";
+    private String broker = "tcp://127.0.0.1:1883";
+    private String clientId = "Collector";
+    private MqttClient mqttClient = null;
+
+    public CollectorMqtt() {
         try {
-            MqttClient mqttClient = new MqttClient(broker, clientId);
+            mqttClient = new MqttClient(broker, clientId);
             System.out.println("Connecting to broker: " + broker);
             mqttClient.setCallback(this);
             mqttClient.connect();
@@ -33,10 +35,5 @@ public class CollectorMqtt implements MqttCallback {
         } catch (MqttException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public static void main(String[] args) {
-        CollectorMqtt mc = new CollectorMqtt();
     }
 }
