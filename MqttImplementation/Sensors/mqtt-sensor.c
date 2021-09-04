@@ -102,7 +102,7 @@ static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *ch
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
           topic_len, chunk_len);
 
-  if(strcmp(topic, "Sensor") == 0) {
+  if(strcmp(topic, "temperature") == 0) {
     printf("Received Sensor command\n");
 	printf("%s\n", chunk);
     // Do something :)
@@ -235,7 +235,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 		  if(state==STATE_CONNECTED){
 		  
 			  // Subscribe to a topic
-			  strcpy(sub_topic,"Sensors");
+			  strcpy(sub_topic,"temperature");
 
 			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
 
