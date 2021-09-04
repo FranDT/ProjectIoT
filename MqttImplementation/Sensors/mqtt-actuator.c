@@ -91,14 +91,15 @@ PROCESS(mqtt_actuator_process, "MQTT Actuator");
 
 
 /*---------------------------------------------------------------------------*/
-static void
-pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
-            uint16_t chunk_len)
+static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
           topic_len, chunk_len);
 
-  if(strcmp(topic, "actuator") == 0) {
+  char [4] nodeid;
+  char [12] act = "actuator";
+  sprintf(nodeid, "%d", node_id);
+  if(strcmp(topic, strcat(act, nodeid)) == 0) {
     printf("Received Actuator command\n");
 	printf("%s\n", chunk);
 	//Controllo sul payload da sistemare
@@ -114,8 +115,7 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
   }
 }
 /*---------------------------------------------------------------------------*/
-static void
-mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data)
+static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data)
 {
   switch(event) {
   case MQTT_EVENT_CONNECTED: {
@@ -166,8 +166,7 @@ mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data)
   }
 }
 
-static bool
-have_connectivity(void)
+static bool have_connectivity(void)
 {
   if(uip_ds6_get_global(ADDR_PREFERRED) == NULL ||
      uip_ds6_defrt_choose() == NULL) {
@@ -244,27 +243,14 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 			  state = STATE_SUBSCRIBED;
 		  }
 
-			  
 		if(state == STATE_SUBSCRIBED){
-			// Publish something
-		    sprintf(pub_topic, "%s", "status");
-			
-			sprintf(app_buffer, "report %d", value);
-			
-			value++;
-				
-			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
-               strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
-		
+			// Publish something - nothing to publish on actuators
 		} else if ( state == STATE_DISCONNECTED ){
 		   LOG_ERR("Disconnected form MQTT broker\n");	
 		   // Recover from error
 		}
-		
 		etimer_set(&periodic_timer, STATE_MACHINE_PERIODIC);
-      
     }
-
   }
 
   PROCESS_END();
