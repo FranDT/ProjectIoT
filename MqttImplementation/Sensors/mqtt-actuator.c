@@ -16,7 +16,7 @@
 #include <string.h>
 #include <strings.h>
 /*---------------------------------------------------------------------------*/
-#define LOG_MODULE "mqtt-client"
+#define LOG_MODULE "mqtt-actuator"
 #ifdef MQTT_CLIENT_CONF_LOG_LEVEL
 #define LOG_LEVEL MQTT_CLIENT_CONF_LOG_LEVEL
 #else
@@ -49,8 +49,8 @@ static uint8_t state;
 #define STATE_DISCONNECTED    5
 
 /*---------------------------------------------------------------------------*/
-PROCESS_NAME(mqtt_client_process);
-AUTOSTART_PROCESSES(&mqtt_client_process);
+PROCESS_NAME(mqtt_actuator_process);
+AUTOSTART_PROCESSES(&mqtt_actuator_process);
 
 /*---------------------------------------------------------------------------*/
 /* Maximum TCP segment size for outgoing segments of our socket */
@@ -63,7 +63,7 @@ AUTOSTART_PROCESSES(&mqtt_client_process);
  */
 #define BUFFER_SIZE 64
 
-static char client_id[BUFFER_SIZE];
+static char actuator_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
 static char sub_topic[BUFFER_SIZE];
 
@@ -176,7 +176,7 @@ static bool have_connectivity(void)
 }
 
 /*---------------------------------------------------------------------------*/
-PROCESS_THREAD(mqtt_client_process, ev, data)
+PROCESS_THREAD(mqtt_actuator_process, ev, data)
 {
 
   PROCESS_BEGIN();
@@ -188,13 +188,13 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
   printf("MQTT Actuator Process\n");
 
   // Initialize the ClientID as MAC address
-  snprintf(client_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
+  snprintf(actuator_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
                      linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
                      linkaddr_node_addr.u8[2], linkaddr_node_addr.u8[5],
                      linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7]);
 
   // Broker registration					 
-  mqtt_register(&conn, &mqtt_client_process, client_id, mqtt_event,
+  mqtt_register(&conn, &mqtt_actuator_process, actuator_id, mqtt_event,
                   MAX_TCP_SEGMENT_SIZE);
 				  
   state=STATE_INIT;

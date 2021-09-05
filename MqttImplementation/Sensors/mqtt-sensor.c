@@ -16,7 +16,7 @@
 #include <string.h>
 #include <strings.h>
 /*---------------------------------------------------------------------------*/
-#define LOG_MODULE "mqtt-client"
+#define LOG_MODULE "mqtt-sensor"
 #ifdef MQTT_CLIENT_CONF_LOG_LEVEL
 #define LOG_LEVEL MQTT_CLIENT_CONF_LOG_LEVEL
 #else
@@ -52,8 +52,8 @@ static uint8_t state;
 #define STATE_DISCONNECTED    5
 
 /*---------------------------------------------------------------------------*/
-PROCESS_NAME(mqtt_client_process);
-AUTOSTART_PROCESSES(&mqtt_client_process);
+PROCESS_NAME(mqtt_sensor_process);
+AUTOSTART_PROCESSES(&mqtt_sensor_process);
 
 /*---------------------------------------------------------------------------*/
 /* Maximum TCP segment size for outgoing segments of our socket */
@@ -66,7 +66,7 @@ AUTOSTART_PROCESSES(&mqtt_client_process);
  */
 #define BUFFER_SIZE 64
 
-static char client_id[BUFFER_SIZE];
+static char sensor_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
 static char sub_topic[BUFFER_SIZE];
 
@@ -180,7 +180,7 @@ void set_ascending(){
 }
 
 /*---------------------------------------------------------------------------*/
-PROCESS_THREAD(mqtt_client_process, ev, data)
+PROCESS_THREAD(mqtt_sensor_process, ev, data)
 {
 
   PROCESS_BEGIN();
@@ -192,13 +192,13 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
   printf("MQTT Sensor Process\n");
 
   // Initialize the ClientID as MAC address
-  snprintf(client_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
+  snprintf(sensor_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
                      linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
                      linkaddr_node_addr.u8[2], linkaddr_node_addr.u8[5],
                      linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7]);
 
   // Broker registration					 
-  mqtt_register(&conn, &mqtt_client_process, client_id, mqtt_event,
+  mqtt_register(&conn, &mqtt_sensor_process, sensor_id, mqtt_event,
                   MAX_TCP_SEGMENT_SIZE);
 				  
   state=STATE_INIT;
@@ -252,8 +252,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 		if(state == STATE_SUBSCRIBED){
 			// Publish something
 		    sprintf(pub_topic, "%s", "temperature");
-			
-			sprintf(app_buffer, "Temperature: %f", temperature);
 
 		    if(ascending && !actuating){
 		        temperature = temperature + 0.1;
@@ -272,6 +270,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                 if(temperature >= TARGET_TEMP)
                     actuating = false;
 		    }
+
+		    sprintf(app_buffer, "{\"temperature\": %f, \"timestamp\": %lu}", temperature, clock_seconds());
 				
 			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
