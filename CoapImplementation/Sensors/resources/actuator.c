@@ -3,12 +3,17 @@
 #include <stdio.h>
 #include <string.h>
 
+/* Log configuration */
+#include "sys/log.h"
+#define LOG_MODULE "ACTUATOR"
+#define LOG_LEVEL LOG_LEVEL_INFO
+
 static bool actuating = false;
 
 static void res_post_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 
 RESOURCE(res_actuator,
-                "title=\"Temperature actuatore\" POST mode=on|off, value=up|down;rt=\"Temperature\"",
+                "title=\"Temperature actuator\" POST mode=on|off, value=up|down;rt=\"Temperature\"",
                 NULL,
                 res_post_handler,
                 NULL,
@@ -31,7 +36,7 @@ static void res_post_handler(coap_message_t *request, coap_message_t *response, 
             LOG_INFO("Actuator turned on to rise the temperature");
         }
         else if(strcmp(value, "down")){
-            acutaitng = true;
+            actuating = true;
             LOG_INFO("Actuator turned on to lower the temperature");
         }
         else
