@@ -12,6 +12,7 @@
 #include "dev/leds.h"
 #include "os/sys/log.h"
 #include "mqtt-client.h"
+#include "node-id.h"
 
 #include <string.h>
 #include <strings.h>
@@ -124,7 +125,7 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
     printf("MQTT Disconnect. Reason %u\n", *((mqtt_event_t *)data));
 
     state = STATE_DISCONNECTED;
-    process_poll(&mqtt_client_process);
+    process_poll(&mqtt_sensor_process);
     break;
   }
   case MQTT_EVENT_PUBLISH: {
@@ -261,7 +262,7 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
                 temperature = temperature - 0.1;
                 if(temperature <= TARGET_TEMP)
                     actuating = false;
-		    }else if(descending && !actuating){
+		    }else if(!ascending && !actuating){
                 temperature = temperature - 0.1;
                 if(temperature <= MIN_TEMP)
                     actuating = true;

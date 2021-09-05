@@ -12,6 +12,7 @@
 #include "dev/leds.h"
 #include "os/sys/log.h"
 #include "mqtt-client.h"
+#include "node-id.h"
 
 #include <string.h>
 #include <strings.h>
@@ -64,10 +65,7 @@ AUTOSTART_PROCESSES(&mqtt_actuator_process);
 #define BUFFER_SIZE 64
 
 static char actuator_id[BUFFER_SIZE];
-static char pub_topic[BUFFER_SIZE];
 static char sub_topic[BUFFER_SIZE];
-
-static int value = 0;
 
 // Periodic timer to check the state of the MQTT client
 #define STATE_MACHINE_PERIODIC     (CLOCK_SECOND >> 1)
@@ -79,7 +77,6 @@ static struct etimer periodic_timer;
  * We will need to increase if we start publishing more data.
  */
 #define APP_BUFFER_SIZE 512
-static char app_buffer[APP_BUFFER_SIZE];
 /*---------------------------------------------------------------------------*/
 static struct mqtt_message *msg_ptr = 0;
 
@@ -96,17 +93,17 @@ static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *ch
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
           topic_len, chunk_len);
 
-  char [4] nodeid;
-  char [12] act = "actuator";
+  char nodeid[4];
+  char act[12] = "actuator";
   sprintf(nodeid, "%d", node_id);
   if(strcmp(topic, strcat(act, nodeid)) == 0) {
     printf("Received Actuator command\n");
 	printf("%s\n", chunk);
 	//Controllo sul payload da sistemare
-    if(strcmp(chunk, "on_up") == 0){
+    if(strcmp((const char*)chunk, "on_up") == 0){
         printf("Temperature too low.\nTurning up the temperature.\n");
     }else{
-        if(strcmp(chunk, "on_down") == 0){
+        if(strcmp((const char*)chunk, "on_down") == 0){
             printf("Temperature too high.\nTurning down the temperature.\n");
         }else
             printf("Reached the ideal temperature.\n");
@@ -128,7 +125,7 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
     printf("MQTT Disconnect. Reason %u\n", *((mqtt_event_t *)data));
 
     state = STATE_DISCONNECTED;
-    process_poll(&mqtt_client_process);
+    process_poll(&mqtt_actuator_process);
     break;
   }
   case MQTT_EVENT_PUBLISH: {

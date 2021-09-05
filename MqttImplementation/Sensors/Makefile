@@ -1,16 +1,13 @@
 CONTIKI_PROJECT = Sensor
 all: $(CONTIKI_PROJECT)
 
-# Do not try to build on Sky because of code size limitation
-PLATFORMS_EXCLUDE = sky z1
+CONTIKI=../../..
 
-# Include CoAP resources
-MODULES_REL += ./resources
-
-CONTIKI=../../contiki-ng
-
-# Include the CoAP implementation
+# Include the MQTT implementation
 include $(CONTIKI)/Makefile.dir-variables
-MODULES += $(CONTIKI_NG_APP_LAYER_DIR)/coap
+MODULES += $(CONTIKI_NG_APP_LAYER_DIR)/mqtt
+
+-include $(CONTIKI)-Makefile.identify-target
+MODULES_REL += arch/platform/$(TARGET)
 
 include $(CONTIKI)/Makefile.include
