@@ -31,7 +31,7 @@ public class CoapObserver {
                     int timestamp = responseText.getInt("timestamp");
                     double temperature = responseText.getDouble("temperature");
                     dbManager.insert(t.getNodeAddress(), temperature, timestamp);
-                    System.out.println("Obtained new measurement from " + t.getNodeAddress() + "\n:" +
+                    System.out.println("Obtained new measurement from: " + t.getNodeAddress() + "\n" +
                             "temperature: " + temperature + ",\n" +
                             "timestamp: " + timestamp);
                     if(temperature >= 25 || temperature <= 18){

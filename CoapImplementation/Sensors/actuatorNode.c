@@ -35,6 +35,8 @@ PROCESS_THREAD(actNode, ev, data){
 
     PROCESS_BEGIN();
 
+    coap_activate_resource(&res_actuator, "act");
+
     coap_endpoint_parse(SERVER_EP, strlen(SERVER_EP), &server_ep);
 
     coap_init_message(request, COAP_TYPE_CON, COAP_POST, 0);
@@ -42,8 +44,6 @@ PROCESS_THREAD(actNode, ev, data){
 
     LOG_INFO("Registering to the CoAP server\n");
     COAP_BLOCKING_REQUEST(&server_ep, request, client_chunk_handler);
-
-	coap_activate_resource(&res_actuator, "act");
 
     PROCESS_END();
 }
