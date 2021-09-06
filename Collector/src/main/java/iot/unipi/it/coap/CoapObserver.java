@@ -28,7 +28,7 @@ public class CoapObserver {
             public void onLoad(CoapResponse response) {
                 JSONObject responseText = new JSONObject(response.getResponseText());
                 if(responseText.has("temperature")){
-                    long timestamp = responseText.getLong("timestamp");
+                    int timestamp = responseText.getInt("timestamp");
                     double temperature = responseText.getDouble("temperature");
                     dbManager.insert(t.getNodeAddress(), temperature, timestamp);
                     System.out.println("Obtained new measurement from " + t.getNodeAddress() + "\n:" +
@@ -36,6 +36,10 @@ public class CoapObserver {
                             "timestamp: " + timestamp);
                     if(temperature >= 25 || temperature <= 18){
                         Actuator a = dbManager.retrieveAct(t);
+                        if(!a.isActive()){
+                            System.out.println("Actuator not available yet!");
+                            return;
+                        }
                         String payload = "mode=on";
                         if(temperature >= 25){
                             payload += "value=down";
@@ -48,6 +52,10 @@ public class CoapObserver {
                         req.send();
                     }else if(temperature == 21){
                         Actuator a = dbManager.retrieveAct(t);
+                        if(!a.isActive()){
+                            System.out.println("Actuator not available yet!");
+                            return;
+                        }
                         String payload = "mode=off";
                         Request req = new Request(Code.POST);
                         req.setPayload(payload);

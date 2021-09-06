@@ -15,6 +15,8 @@
 
 #define SERVER_EP "coap://[fd00::1]:5683"
 
+bool registered = false;
+
 void client_chunk_handler(coap_message_t *response){
     const uint8_t *chunk;
     if(response == NULL){
@@ -22,6 +24,7 @@ void client_chunk_handler(coap_message_t *response){
         return;
     }
 
+    registered = true;
     int len = coap_get_payload(response, &chunk);
     LOG_INFO("|%.*s", len, (char *)chunk);
 }
@@ -64,6 +67,11 @@ PROCESS_THREAD(tempNode, ev, data){
 
     LOG_INFO("Registering to the CoAP server\n");
     COAP_BLOCKING_REQUEST(&server_ep, request, client_chunk_handler);
+
+    while(!registered){
+        LOG_INFO("Impossible to register to the server: retrying.");
+        COAP_BLOCKING_REQUEST(&server_ep, request, client_chunk_handler);
+    }
 
     set_ascending();
 	coap_activate_resource(&res_temperature, "temp");

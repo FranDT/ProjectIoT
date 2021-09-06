@@ -29,7 +29,7 @@ public class DBManager {
             );
             pstRegisterAct = conn.prepareStatement(
                 "UPDATE rooms " +
-                    "SET actName = ? " +
+                    "SET actName = ?, actActive = 1 " +
                     "WHERE actIP = ?;"
             );
             pstInsert = conn.prepareStatement(
@@ -37,7 +37,7 @@ public class DBManager {
                     "VALUES (?, ?, ?);"
             );
             pstRetrieveAct = conn.prepareStatement(
-                "SELECT actIP, actName " +
+                "SELECT actIP, actName, actActive " +
                     "FROM rooms " +
                     "WHERE sensIP = ?;"
             );
@@ -62,12 +62,11 @@ public class DBManager {
         }
     }
 
-    public void insert(String nodeAddress, double temperature, long timestamp){
+    public void insert(String nodeAddress, double temperature, int timestamp){
         try{
             pstInsert.setString(1, nodeAddress);
             pstInsert.setDouble(2, temperature);
-            Timestamp ts = new Timestamp(timestamp);
-            pstInsert.setTimestamp(3, ts);
+            pstInsert.setInt(3, timestamp);
             pstInsert.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
@@ -101,7 +100,11 @@ public class DBManager {
             ResultSet rs = pstRetrieveAct.executeQuery();
 
             while(rs.next()){
-                a = new Actuator(rs.getString("actIP"), rs.getString("actName"));
+                boolean active = false;
+                if(rs.getInt("actActive") == 1){
+                    active = true;
+                }
+                a = new Actuator(rs.getString("actIP"), rs.getString("actName"), active);
             }
 
         }catch(SQLException e){

@@ -47,15 +47,14 @@ public class CoapRegistrationHandler extends CoapResource {
         }
 
         String responseText = response.getResponseText();
-        if(!responseText.contains("</") || !responseText.contains(">")) {
-            System.out.println("Error: wrong format of the CoAP registration request");
-            return;
-        }
+        System.out.println(sensorAddress.getHostAddress());
+        System.out.println(responseText);
+        String resourceName = responseText.substring(responseText.indexOf(",</") + 2, responseText.lastIndexOf(">"));
+        System.out.println(responseText.substring(responseText.indexOf(",</") + 2, responseText.lastIndexOf(">")));
 
-        String resourceName = responseText.substring(responseText.indexOf("</") + 2, responseText.indexOf(">"));
         boolean toRegister = true;
 
-        if(resourceName.contains("res_temperature")){
+        if(resourceName.contains("/temp")){
             Thermometer t = new Thermometer(sensorAddress.getHostAddress(), resourceName);
             for(Thermometer tmp : thermometerList){
                 if(t.equals(tmp)){
@@ -70,8 +69,8 @@ public class CoapRegistrationHandler extends CoapResource {
                 dbManager.registerTherm(t);
                 System.out.println("Thermometer resource inserted in the database; observation started.");
             }
-        }else if(resourceName.contains("res_actuator")){
-            Actuator a = new Actuator(sensorAddress.getHostAddress(), resourceName);
+        }else if(resourceName.contains("/act")){
+            Actuator a = new Actuator(sensorAddress.getHostAddress(), resourceName, true);
             for(Actuator tmp : actuatorList){
                 if(a.equals(tmp)){
                     toRegister = false;
