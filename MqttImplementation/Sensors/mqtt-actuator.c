@@ -102,11 +102,10 @@ static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *ch
     printf("Received Actuator command\n%s\n", chunk);
     if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": up}") == 0){
         printf("Temperature too low.\nTurning up the temperature.\n");
-    }else{
-        if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": down}") == 0){
-            printf("Temperature too high.\nTurning down the temperature.\n");
-        }else
-            printf("Reached the ideal temperature.\n");
+    }else if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": down}") == 0){
+        printf("Temperature too high.\nTurning down the temperature.\n");
+    }else
+        printf("Reached the ideal temperature.\n");
     }
     return;
   }

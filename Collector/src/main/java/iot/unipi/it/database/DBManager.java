@@ -14,6 +14,7 @@ public class DBManager {
     private PreparedStatement pstInsert;
     private PreparedStatement pstRetrieveAct;
     private PreparedStatement pstRemoveTherm;
+    private PreparedStatement pstRetrieveActMQTT;
 
     public DBManager(String URL, String user, String password){
         DB_URL = URL;
@@ -44,6 +45,11 @@ public class DBManager {
             pstRemoveTherm = conn.prepareStatement(
                 "UPDATE rooms " +
                     "SET sensName = NULL " +
+                    "WHERE sensIP = ?;"
+            );
+            pstRetrieveActMQTT = conn.prepareStatement(
+                "SELECT actIP, actName " +
+                    "FROM rooms " +
                     "WHERE sensIP = ?;"
             );
 
@@ -107,6 +113,21 @@ public class DBManager {
                 a = new Actuator(rs.getString("actIP"), rs.getString("actName"), active);
             }
 
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return a;
+    }
+
+    public Actuator retrieveAct(String address){
+        Actuator a = null;
+        try{
+            pstRetrieveAct.setString(1, address);
+            ResultSet rs = pstRetrieveAct.executeQuery();
+
+            while(rs.next()){
+                a = new Actuator(rs.getString("actIP"), rs.getString("actName"), true);
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }

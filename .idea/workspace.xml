@@ -22,11 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Coap bug fixes">
+    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Coap completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoapImplementation/Sensors/actuatorNode.c" beforeDir="false" afterPath="$PROJECT_DIR$/CoapImplementation/Sensors/actuatorNode.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoapImplementation/Sensors/sensorNode.c" beforeDir="false" afterPath="$PROJECT_DIR$/CoapImplementation/Sensors/sensorNode.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/coap/CoapObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/coap/CoapObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/database/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/database/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-actuator.c" beforeDir="false" afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-actuator.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,10 @@
       <workItem from="1630679523520" duration="5782000" />
       <workItem from="1630845657824" duration="1987000" />
       <workItem from="1630850658041" duration="4113000" />
-      <workItem from="1630937271252" duration="8425000" />
+      <workItem from="1630937271252" duration="8490000" />
+      <workItem from="1631009263201" duration="287000" />
+      <workItem from="1631009755030" duration="305000" />
+      <workItem from="1631017005604" duration="2560000" />
     </task>
     <task id="LOCAL-00001" summary="Project creation">
       <created>1630083066985</created>
@@ -163,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630947738203</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Coap completed">
+      <created>1630955317724</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1630955317724</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +199,8 @@
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Deployable MQTT nodes" />
     <MESSAGE value="Coap bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Coap bug fixes" />
+    <MESSAGE value="Coap completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Coap completed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630082977885">
@@ -208,15 +219,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630680736687" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1630947741505">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1630955321412">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630947741505" />
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1630852437475" />
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1630587880439">
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1630955321412" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1631022812636">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630587880439" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1631022812636" />
     <state x="342" y="140" key="new project wizard" timestamp="1630075538608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
