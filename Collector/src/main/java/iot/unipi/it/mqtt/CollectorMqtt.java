@@ -3,8 +3,6 @@ package iot.unipi.it.mqtt;
 import iot.unipi.it.coap.resources.Actuator;
 import iot.unipi.it.database.DBManager;
 import iot.unipi.it.database.DBManagerFactory;
-import org.eclipse.californium.core.coap.CoAP;
-import org.eclipse.californium.core.coap.Request;
 import org.eclipse.paho.client.mqttv3.*;
 import org.json.JSONObject;
 
@@ -60,7 +58,7 @@ public class CollectorMqtt implements MqttCallback {
                 if(temperature >= 25){
                     payload += "\"value\": \"down\"}";
                 }else{
-                    payload += "\"value\": \"up\"";
+                    payload += "\"value\": \"up\"}";
                 }
                 publish(payload, a.getResourceName());
             }else if(temperature == 21){

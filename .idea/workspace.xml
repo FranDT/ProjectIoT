@@ -22,10 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Mqtt Collector first implementation">
+    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Makefile adjustments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MqttImplementation/BR/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/MqttImplementation/BR/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MqttImplementation/Sensors/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +92,8 @@
       <workItem from="1630937271252" duration="8490000" />
       <workItem from="1631009263201" duration="287000" />
       <workItem from="1631009755030" duration="305000" />
-      <workItem from="1631017005604" duration="8287000" />
+      <workItem from="1631017005604" duration="8899000" />
+      <workItem from="1631044936786" duration="3339000" />
     </task>
     <task id="LOCAL-00001" summary="Project creation">
       <created>1630083066985</created>
@@ -179,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631023477302</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Makefile adjustments">
+      <created>1631033654646</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1631033654646</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +214,8 @@
     <MESSAGE value="Coap bug fixes" />
     <MESSAGE value="Coap completed" />
     <MESSAGE value="Mqtt Collector first implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mqtt Collector first implementation" />
+    <MESSAGE value="Makefile adjustments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Makefile adjustments" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630082977885">
@@ -226,11 +234,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630680736687" />
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631023479323">
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631033655913">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630947741505" />
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1631023479323" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1631033655913" />
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1631022812636">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
