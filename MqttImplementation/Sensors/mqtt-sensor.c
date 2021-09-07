@@ -97,17 +97,13 @@ PROCESS(mqtt_sensor_process, "MQTT Sensor");
 
 
 /*---------------------------------------------------------------------------*/
-static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
-            uint16_t chunk_len)
+static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
-  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
-          topic_len, chunk_len);
-
-  if(strcmp(topic, "temperature") == 0) {
-    printf("Received Sensor command\n");
-	printf("%s\n", chunk);
-    // Do something :)
-    // Inviare la temperatura al broker
+//  non bisogna fare nulla quando un sensore temp riceve un messaggio sul topic "temperature"
+//  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
+//  if(strcmp(topic, "temperature") == 0) {
+//    printf("Received Sensor command\n");
+//	printf("%s\n", chunk);
     return;
   }
 }
@@ -199,8 +195,7 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
                      linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7]);
 
   // Broker registration					 
-  mqtt_register(&conn, &mqtt_sensor_process, sensor_id, mqtt_event,
-                  MAX_TCP_SEGMENT_SIZE);
+  mqtt_register(&conn, &mqtt_sensor_process, sensor_id, mqtt_event, MAX_TCP_SEGMENT_SIZE);
 				  
   state=STATE_INIT;
 
@@ -272,7 +267,7 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
                     actuating = false;
 		    }
 
-		    sprintf(app_buffer, "{\"temperature\": %f, \"timestamp\": %lu}", temperature, clock_seconds());
+		    sprintf(app_buffer, "{\"temperature\": %f, \"timestamp\": %lu, \"sensor_id\": %d}", temperature, clock_seconds(), sensor_id);
 				
 			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);

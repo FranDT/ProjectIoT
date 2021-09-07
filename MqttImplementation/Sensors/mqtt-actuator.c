@@ -90,20 +90,21 @@ PROCESS(mqtt_actuator_process, "MQTT Actuator");
 /*---------------------------------------------------------------------------*/
 static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
-  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
-          topic_len, chunk_len);
+  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
 
-  char nodeid[4];
-  char act[12] = "actuator";
-  sprintf(nodeid, "%d", node_id);
-  if(strcmp(topic, strcat(act, nodeid)) == 0) {
+//  char [] nodeid = malloc(128);
+//  snprintf(nodeid, 128, "%u", node_id);
+  char [] act = "actuator_";
+//  sprintf(nodeid, "%d", node_id);
+//  strcat(act, nodeid);
+  strcat(act, actuator_id);
+  if(strcmp(topic, act) == 0) {
     printf("Received Actuator command\n");
 	printf("%s\n", chunk);
-	//Controllo sul payload da sistemare
-    if(strcmp((const char*)chunk, "on_up") == 0){
+    if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": up}") == 0){
         printf("Temperature too low.\nTurning up the temperature.\n");
     }else{
-        if(strcmp((const char*)chunk, "on_down") == 0){
+        if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": down}") == 0){
             printf("Temperature too high.\nTurning down the temperature.\n");
         }else
             printf("Reached the ideal temperature.\n");
@@ -191,8 +192,7 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
                      linkaddr_node_addr.u8[6], linkaddr_node_addr.u8[7]);
 
   // Broker registration					 
-  mqtt_register(&conn, &mqtt_actuator_process, actuator_id, mqtt_event,
-                  MAX_TCP_SEGMENT_SIZE);
+  mqtt_register(&conn, &mqtt_actuator_process, actuator_id, mqtt_event, MAX_TCP_SEGMENT_SIZE);
 				  
   state=STATE_INIT;
 				    
@@ -204,8 +204,7 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 
     PROCESS_YIELD();
 
-    if((ev == PROCESS_EVENT_TIMER && data == &periodic_timer) || 
-	      ev == PROCESS_EVENT_POLL){
+    if((ev == PROCESS_EVENT_TIMER && data == &periodic_timer) || ev == PROCESS_EVENT_POLL){
 			  			  
 		  if(state==STATE_INIT){
 			 if(have_connectivity()==true)  
@@ -226,9 +225,12 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 		  
 		  if(state==STATE_CONNECTED){
 		  
-			  // Subscribe to a topic
-			  strcpy(sub_topic,"actuator");
+			  // concateno actuator con actuator_id per avere un topic univoco per ogni actuator
+			  char [] act = "actuator_";
+			  strcat(act, actuator_id);
+			  strcpy(sub_topic, act);
 
+              // Subscribe al topic "actuator_actuator_id"
 			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
 
 			  printf("Subscribing!\n");
