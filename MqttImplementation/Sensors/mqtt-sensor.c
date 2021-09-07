@@ -100,12 +100,12 @@ PROCESS(mqtt_sensor_process, "MQTT Sensor");
 static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
 //  non bisogna fare nulla quando un sensore temp riceve un messaggio sul topic "temperature"
-//  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
+  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
 //  if(strcmp(topic, "temperature") == 0) {
 //    printf("Received Sensor command\n");
 //	printf("%s\n", chunk);
-    return;
-  }
+//    return;
+//  }
 }
 /*---------------------------------------------------------------------------*/
 static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data)
@@ -126,11 +126,10 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
   }
   case MQTT_EVENT_PUBLISH: {
     msg_ptr = data;
-
-    pub_handler(msg_ptr->topic, strlen(msg_ptr->topic),
-                msg_ptr->payload_chunk, msg_ptr->payload_length);
+    pub_handler(msg_ptr->topic, strlen(msg_ptr->topic), msg_ptr->payload_chunk, msg_ptr->payload_length);
     break;
   }
+  // il sensore di temperatura non fa il sub a nessun topic, ma pubblica soltanto
   case MQTT_EVENT_SUBACK: {
 #if MQTT_311
     mqtt_suback_event_t *suback_event = (mqtt_suback_event_t *)data;
@@ -228,24 +227,24 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
 			  state = STATE_CONNECTING;
 		  }
 		  
-		  if(state==STATE_CONNECTED){
-		  
-			  // Subscribe to a topic
-			  strcpy(sub_topic,"temperature");
+//		  if(state==STATE_CONNECTED){
+//
+//			  // Subscribe to a topic
+//			  strcpy(sub_topic,"temperature");
+//
+//			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
+//
+//			  printf("Subscribing!\n");
+//			  if(status == MQTT_STATUS_OUT_QUEUE_FULL) {
+//				LOG_ERR("Tried to subscribe but command queue was full!\n");
+//				PROCESS_EXIT();
+//			  }
+//
+//			  state = STATE_SUBSCRIBED;
+//		  }
 
-			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
-
-			  printf("Subscribing!\n");
-			  if(status == MQTT_STATUS_OUT_QUEUE_FULL) {
-				LOG_ERR("Tried to subscribe but command queue was full!\n");
-				PROCESS_EXIT();
-			  }
 			  
-			  state = STATE_SUBSCRIBED;
-		  }
-
-			  
-		if(state == STATE_SUBSCRIBED){
+		if(state == STATE_CONNECTED){
 			// Publish something
 		    sprintf(pub_topic, "%s", "temperature");
 
@@ -267,10 +266,11 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
                     actuating = false;
 		    }
 
-		    sprintf(app_buffer, "{\"temperature\": %f, \"timestamp\": %lu, \"sensor_id\": %d}", temperature, clock_seconds(), sensor_id);
+		    sprintf(app_buffer, "{\"temperature\": %f, \"timestamp\": %lu, \"sensor_id\": %s}", temperature,
+		        clock_seconds(), sensor_id);
 				
-			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
-               strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
+			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer, strlen(app_buffer),
+			    MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
 		
 		} else if ( state == STATE_DISCONNECTED ){
 		   LOG_ERR("Disconnected form MQTT broker\n");	

@@ -99,8 +99,7 @@ static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *ch
 //  strcat(act, nodeid);
   strcat(act, actuator_id);
   if(strcmp(topic, act) == 0) {
-    printf("Received Actuator command\n");
-	printf("%s\n", chunk);
+    printf("Received Actuator command\n%s\n", chunk);
     if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": up}") == 0){
         printf("Temperature too low.\nTurning up the temperature.\n");
     }else{
@@ -131,9 +130,7 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
   }
   case MQTT_EVENT_PUBLISH: {
     msg_ptr = data;
-
-    pub_handler(msg_ptr->topic, strlen(msg_ptr->topic),
-                msg_ptr->payload_chunk, msg_ptr->payload_length);
+    pub_handler(msg_ptr->topic, strlen(msg_ptr->topic), msg_ptr->payload_chunk, msg_ptr->payload_length);
     break;
   }
   case MQTT_EVENT_SUBACK: {
@@ -166,8 +163,7 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
 
 static bool have_connectivity(void)
 {
-  if(uip_ds6_get_global(ADDR_PREFERRED) == NULL ||
-     uip_ds6_defrt_choose() == NULL) {
+  if(uip_ds6_get_global(ADDR_PREFERRED) == NULL || uip_ds6_defrt_choose() == NULL) {
     return false;
   }
   return true;
@@ -182,7 +178,6 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
   mqtt_status_t status;
   char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-  // printf("MQTT Client Process\n");
   printf("MQTT Actuator Process\n");
 
   // Initialize the ClientID as MAC address
@@ -217,8 +212,7 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 			  
 			  memcpy(broker_address, broker_ip, strlen(broker_ip));
 			  
-			  mqtt_connect(&conn, broker_address, DEFAULT_BROKER_PORT,
-						   (DEFAULT_PUBLISH_INTERVAL * 3) / CLOCK_SECOND,
+			  mqtt_connect(&conn, broker_address, DEFAULT_BROKER_PORT, (DEFAULT_PUBLISH_INTERVAL * 3) / CLOCK_SECOND,
 						   MQTT_CLEAN_SESSION_ON);
 			  state = STATE_CONNECTING;
 		  }
@@ -229,7 +223,6 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 			  char [] act = "actuator_";
 			  strcat(act, actuator_id);
 			  strcpy(sub_topic, act);
-
               // Subscribe al topic "actuator_actuator_id"
 			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
 
