@@ -31,7 +31,7 @@ public class CollectorMqtt implements MqttCallback {
     public void publish(String content, String node){
         try{
             MqttMessage message = new MqttMessage(content.getBytes());
-            this.mqttClient.publish(this.topic + node, message);
+            this.mqttClient.publish("actuator_" + node, message);
         }catch(MqttException me){
             me.printStackTrace();
         }
@@ -40,16 +40,16 @@ public class CollectorMqtt implements MqttCallback {
     public void messageArrived(String topic, MqttMessage message) {
         System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
         JSONObject responseText = new JSONObject(new String(message.getPayload()));
-        Integer sensorId = responseText.getInt("sensor_id");
+        String sensorId = responseText.getString("sensor_id");
         if(responseText.has("temperature")){
             int timestamp = responseText.getInt("timestamp");
             double temperature = responseText.getDouble("temperature");
-            dbManager.insert(sensorId.toString(), temperature, timestamp);
+            dbManager.insert(sensorId, temperature, timestamp);
             System.out.println("Obtained new measurement from: " + sensorId + "\n" +
                     "temperature: " + temperature + ",\n" +
                     "timestamp: " + timestamp);
             if(temperature >= 25 || temperature <= 18){
-                Actuator a = dbManager.retrieveAct(sensorId.toString());
+                Actuator a = dbManager.retrieveAct(sensorId);
                 if(!a.isActive()){
                     System.out.println("Actuator not available yet!");
                     return;
@@ -62,7 +62,7 @@ public class CollectorMqtt implements MqttCallback {
                 }
                 publish(payload, a.getResourceName());
             }else if(temperature == 21){
-                Actuator a = dbManager.retrieveAct(sensorId.toString());
+                Actuator a = dbManager.retrieveAct(sensorId);
                 if(!a.isActive()){
                     System.out.println("Actuator not available yet!");
                     return;

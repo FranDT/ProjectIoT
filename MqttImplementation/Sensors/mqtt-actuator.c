@@ -94,7 +94,7 @@ static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *ch
 
 //  char [] nodeid = malloc(128);
 //  snprintf(nodeid, 128, "%u", node_id);
-  char [] act = "actuator_";
+  char act[] = "actuator_";
 //  sprintf(nodeid, "%d", node_id);
 //  strcat(act, nodeid);
   strcat(act, actuator_id);
@@ -104,7 +104,7 @@ static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *ch
         printf("Temperature too low.\nTurning up the temperature.\n");
     }else if(strcmp((const char*)chunk, "{\"mode\": on, \"value\": down}") == 0){
         printf("Temperature too high.\nTurning down the temperature.\n");
-    }else
+    }else{
         printf("Reached the ideal temperature.\n");
     }
     return;
@@ -219,7 +219,7 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 		  if(state==STATE_CONNECTED){
 		  
 			  // concateno actuator con actuator_id per avere un topic univoco per ogni actuator
-			  char [] act = "actuator_";
+			  char act[] = "actuator_";
 			  strcat(act, actuator_id);
 			  strcpy(sub_topic, act);
               // Subscribe al topic "actuator_actuator_id"

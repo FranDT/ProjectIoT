@@ -1,7 +1,7 @@
 CONTIKI_PROJECT = Sensor
 all: $(CONTIKI_PROJECT)
 
-CONTIKI=../../../..
+CONTIKI=../../..
 
 # Include the MQTT implementation
 include $(CONTIKI)/Makefile.dir-variables

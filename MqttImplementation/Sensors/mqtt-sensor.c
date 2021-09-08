@@ -49,7 +49,6 @@ static uint8_t state;
 #define STATE_NET_OK    	  1
 #define STATE_CONNECTING      2
 #define STATE_CONNECTED       3
-#define STATE_SUBSCRIBED      4
 #define STATE_DISCONNECTED    5
 
 /*---------------------------------------------------------------------------*/
@@ -180,18 +179,12 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
 
   PROCESS_BEGIN();
 
-  char app[10];
-  sprintf(app, "%d", (int)(temperature - (int)temperature + 1.0));
-  printf("%d.%s\n",(int)temperature,  app);
-
+  static char app[10];
 
   char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
   // printf("MQTT Client Process\n");
   printf("MQTT Sensor Process\n");
-
-  char app[8];
-  sprintf(app, "%d", (int)((temperature))
 
   // Initialize the ClientID as MAC address
   snprintf(sensor_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
@@ -232,24 +225,7 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
 						   MQTT_CLEAN_SESSION_ON);
 			  state = STATE_CONNECTING;
 		  }
-		  
-//		  if(state==STATE_CONNECTED){
-//
-//			  // Subscribe to a topic
-//			  strcpy(sub_topic,"temperature");
-//
-//			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
-//
-//			  printf("Subscribing!\n");
-//			  if(status == MQTT_STATUS_OUT_QUEUE_FULL) {
-//				LOG_ERR("Tried to subscribe but command queue was full!\n");
-//				PROCESS_EXIT();
-//			  }
-//
-//			  state = STATE_SUBSCRIBED;
-//		  }
 
-			  
 		if(state == STATE_CONNECTED){
 			// Publish something
 		    sprintf(pub_topic, "%s", "temperature");
@@ -272,8 +248,10 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
                     actuating = false;
 		    }
 
-		    sprintf(app_buffer, "{\"temperature\": %f, \"timestamp\": %lu, \"sensor_id\": %s}", temperature,
-		        clock_seconds(), sensor_id);
+            sprintf(app, "%d", (int)((temperature - (int)temperature)+*10));
+
+		    sprintf(app_buffer, "{\"temperature\": %d.%s, \"timestamp\": %lu, \"sensor_id\": %s}", (int)temperature,
+		        app, clock_seconds(), sensor_id);
 				
 			mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer, strlen(app_buffer),
 			    MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
