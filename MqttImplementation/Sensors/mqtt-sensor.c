@@ -69,7 +69,6 @@ AUTOSTART_PROCESSES(&mqtt_sensor_process);
 
 static char sensor_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
-static char sub_topic[BUFFER_SIZE];
 
 static double temperature = 21.0;
 bool ascending = true;
@@ -180,12 +179,19 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
 {
 
   PROCESS_BEGIN();
-  
-  mqtt_status_t status;
+
+  char app[10];
+  sprintf(app, "%d", (int)(temperature - (int)temperature + 1.0));
+  printf("%d.%s\n",(int)temperature,  app);
+
+
   char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
   // printf("MQTT Client Process\n");
   printf("MQTT Sensor Process\n");
+
+  char app[8];
+  sprintf(app, "%d", (int)((temperature))
 
   // Initialize the ClientID as MAC address
   snprintf(sensor_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
