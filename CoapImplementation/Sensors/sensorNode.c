@@ -26,7 +26,7 @@ void client_chunk_handler(coap_message_t *response){
     LOG_INFO("|%.*s", len, (char *)chunk);
 }
 
-#define INTERVAL 2 * CLOCK_SECOND
+#define INTERVAL 5 * CLOCK_SECOND
 #define MAX_TEMP 25
 #define MIN_TEMP 18
 #define TARGET_TEMP 21

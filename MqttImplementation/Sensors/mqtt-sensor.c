@@ -74,7 +74,7 @@ bool ascending = true;
 bool actuating = false;
 
 // Periodic timer to check the state of the MQTT client
-#define STATE_MACHINE_PERIODIC     (CLOCK_SECOND >> 1)
+#define STATE_MACHINE_PERIODIC     (CLOCK_SECOND >> 5)
 static struct etimer periodic_timer;
 
 /*---------------------------------------------------------------------------*/
@@ -97,13 +97,7 @@ PROCESS(mqtt_sensor_process, "MQTT Sensor");
 /*---------------------------------------------------------------------------*/
 static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
-//  non bisogna fare nulla quando un sensore temp riceve un messaggio sul topic "temperature"
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
-//  if(strcmp(topic, "temperature") == 0) {
-//    printf("Received Sensor command\n");
-//	printf("%s\n", chunk);
-//    return;
-//  }
 }
 /*---------------------------------------------------------------------------*/
 static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data)
@@ -127,7 +121,7 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
     pub_handler(msg_ptr->topic, strlen(msg_ptr->topic), msg_ptr->payload_chunk, msg_ptr->payload_length);
     break;
   }
-  // il sensore di temperatura non fa il sub a nessun topic, ma pubblica soltanto
+
   case MQTT_EVENT_SUBACK: {
 #if MQTT_311
     mqtt_suback_event_t *suback_event = (mqtt_suback_event_t *)data;
@@ -183,7 +177,6 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
 
   char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-  // printf("MQTT Client Process\n");
   printf("MQTT Sensor Process\n");
 
   // Initialize the ClientID as MAC address
@@ -248,7 +241,7 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
                     actuating = false;
 		    }
 
-            sprintf(app, "%d", (int)((temperature - (int)temperature)+*10));
+            sprintf(app, "%d", (int)((temperature - (int)temperature)*10));
 
 		    sprintf(app_buffer, "{\"temperature\": %d.%s, \"timestamp\": %lu, \"sensor_id\": %s}", (int)temperature,
 		        app, clock_seconds(), sensor_id);
@@ -257,7 +250,8 @@ PROCESS_THREAD(mqtt_sensor_process, ev, data)
 			    MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
 		
 		} else if ( state == STATE_DISCONNECTED ){
-		   LOG_ERR("Disconnected form MQTT broker\n");	
+		   LOG_ERR("Disconnected form MQTT broker, restart the registration process\n");
+           state = STATE_INIT;
 		   // Recover from error
 		}
 		

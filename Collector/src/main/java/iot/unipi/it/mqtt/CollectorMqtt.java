@@ -15,13 +15,17 @@ public class CollectorMqtt implements MqttCallback {
     private DBManager dbManager = DBManagerFactory.getDbInstance();
 
     public CollectorMqtt() {
-        try {
-            mqttClient = new MqttClient(broker, clientId);
-            System.out.println("Connecting to broker: " + broker);
-            mqttClient.setCallback(this);
-            mqttClient.connect();
-            mqttClient.subscribe(topic);
-        }catch (MqttException me){me.printStackTrace();}
+        while(!this.mqttClient.isConnected()) {
+            try {
+                mqttClient = new MqttClient(broker, clientId);
+                System.out.println("Connecting to broker: " + broker);
+                mqttClient.setCallback(this);
+                mqttClient.connect();
+                mqttClient.subscribe(topic);
+            } catch (MqttException me) {
+                me.printStackTrace();
+            }
+        }
     }
 
     public void connectionLost(Throwable cause) {

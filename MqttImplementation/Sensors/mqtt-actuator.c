@@ -91,12 +91,8 @@ PROCESS(mqtt_actuator_process, "MQTT Actuator");
 static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
-
-//  char [] nodeid = malloc(128);
-//  snprintf(nodeid, 128, "%u", node_id);
   char act[] = "actuator_";
-//  sprintf(nodeid, "%d", node_id);
-//  strcat(act, nodeid);
+
   strcat(act, actuator_id);
   if(strcmp(topic, act) == 0) {
     printf("Received Actuator command\n%s\n", chunk);
@@ -218,11 +214,11 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 		  
 		  if(state==STATE_CONNECTED){
 		  
-			  // concateno actuator con actuator_id per avere un topic univoco per ogni actuator
+			  // The topic is in the format actuator_actuatorID, to which we then subscribe
 			  char act[] = "actuator_";
 			  strcat(act, actuator_id);
 			  strcpy(sub_topic, act);
-              // Subscribe al topic "actuator_actuator_id"
+
 			  status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
 
 			  printf("Subscribing!\n");
@@ -237,7 +233,8 @@ PROCESS_THREAD(mqtt_actuator_process, ev, data)
 		if(state == STATE_SUBSCRIBED){
 			// Publish something - nothing to publish on actuators
 		} else if ( state == STATE_DISCONNECTED ){
-		   LOG_ERR("Disconnected form MQTT broker\n");	
+		   LOG_ERR("Disconnected form MQTT broker, restart the registration process\n");
+		   state = STATE_INIT;
 		   // Recover from error
 		}
 		etimer_set(&periodic_timer, STATE_MACHINE_PERIODIC);
