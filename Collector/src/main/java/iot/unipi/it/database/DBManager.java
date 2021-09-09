@@ -122,8 +122,8 @@ public class DBManager {
     public Actuator retrieveAct(String address){
         Actuator a = null;
         try{
-            pstRetrieveAct.setString(1, address);
-            ResultSet rs = pstRetrieveAct.executeQuery();
+            pstRetrieveActMQTT.setString(1, address);
+            ResultSet rs = pstRetrieveActMQTT.executeQuery();
 
             while(rs.next()){
                 a = new Actuator(rs.getString("actIP"), rs.getString("actName"), true);
