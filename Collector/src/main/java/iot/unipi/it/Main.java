@@ -4,7 +4,6 @@ import iot.unipi.it.coap.CollectorCoapServer;
 import iot.unipi.it.database.DBManager;
 import iot.unipi.it.database.DBManagerFactory;
 import iot.unipi.it.mqtt.CollectorMqtt;
-import iot.unipi.it.mqtt.CollectorMqtt2;
 
 public class Main {
 
@@ -26,7 +25,7 @@ public class Main {
     }
 
     public static void runMqtt() {
-        new CollectorMqtt2();
+        new CollectorMqtt();
     }
 
     public static void main(String[] args){

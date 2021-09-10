@@ -91,7 +91,7 @@ PROCESS(mqtt_actuator_process, "MQTT Actuator");
 static void pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk, uint16_t chunk_len)
 {
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
-  char act[] = "actuator_";
+  char act[24] = "actuator_";
 
   strcat(act, actuator_id);
   if(strcmp(topic, act) == 0) {

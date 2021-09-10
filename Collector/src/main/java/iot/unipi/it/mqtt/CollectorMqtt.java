@@ -56,11 +56,11 @@ public class CollectorMqtt implements MqttCallback {
                     System.out.println("Actuator not available yet!");
                     return;
                 }
-                String payload = "{\"mode\": \"on\", ";
+                String payload = "{\"mode\": on, ";
                 if(temperature >= 25){
-                    payload += "\"value\": \"down\"}";
+                    payload += "\"value\": down}";
                 }else{
-                    payload += "\"value\": \"up\"}";
+                    payload += "\"value\": up}";
                 }
                 publish(payload, a.getResourceName());
             }else if(temperature == 21){
@@ -69,7 +69,7 @@ public class CollectorMqtt implements MqttCallback {
                     System.out.println("Actuator not available yet!");
                     return;
                 }
-                String payload = "{\"mode\": \"off\"}";
+                String payload = "{\"mode\": off}";
                 publish(payload, a.getResourceName());
             }
         }else{

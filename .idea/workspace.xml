@@ -22,11 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="DB error corrected">
-      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-client.c" afterDir="false" />
+    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Test client singolo MQTT">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-actuator.c" beforeDir="false" afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-actuator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-client.c" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,18 +68,23 @@
     <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="iot.unipi.it.mqtt" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="iot.unipi.it.database" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,7 +121,8 @@
       <workItem from="1631221153235" duration="372000" />
       <workItem from="1631223296660" duration="85000" />
       <workItem from="1631267710884" duration="1830000" />
-      <workItem from="1631278668042" duration="621000" />
+      <workItem from="1631278668042" duration="698000" />
+      <workItem from="1631279766760" duration="2041000" />
     </task>
     <task id="LOCAL-00001" summary="Project creation">
       <created>1630083066985</created>
@@ -250,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631223373946</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Test client singolo MQTT">
+      <created>1631279364560</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1631279364560</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +298,8 @@
     <MESSAGE value="MQTT update" />
     <MESSAGE value="Documentation and working MQTT" />
     <MESSAGE value="DB error corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB error corrected" />
+    <MESSAGE value="Test client singolo MQTT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test client singolo MQTT" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630082977885">
@@ -299,14 +314,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630946758420" />
+    <state x="2610" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1631281571746">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2610" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1631281571746" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1630680736687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630680736687" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631223376922">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631279367987">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1631223376922" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1631279367987" />
     <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1631221003308" />
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1631022812636">
       <screen x="0" y="0" width="1920" height="1040" />
