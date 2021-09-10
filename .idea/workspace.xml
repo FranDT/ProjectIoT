@@ -22,8 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="Documentation and working MQTT">
+    <list default="true" id="4ff1aaa4-3211-40c6-9ac6-dafd72a05c65" name="Default Changelist" comment="DB error corrected">
+      <change afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/mqtt/CollectorMqtt2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MqttImplementation/Sensors/mqtt-client.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Collector/src/main/java/iot/unipi/it/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +71,19 @@
       <recent name="iot.unipi.it.database" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -97,6 +113,9 @@
       <workItem from="1631212236556" duration="582000" />
       <workItem from="1631214283252" duration="5335000" />
       <workItem from="1631221153235" duration="372000" />
+      <workItem from="1631223296660" duration="85000" />
+      <workItem from="1631267710884" duration="1830000" />
+      <workItem from="1631278668042" duration="621000" />
     </task>
     <task id="LOCAL-00001" summary="Project creation">
       <created>1630083066985</created>
@@ -224,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631220998985</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="DB error corrected">
+      <created>1631223373946</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1631223373946</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +283,8 @@
     <MESSAGE value="project-conf bug fixes" />
     <MESSAGE value="MQTT update" />
     <MESSAGE value="Documentation and working MQTT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentation and working MQTT" />
+    <MESSAGE value="DB error corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB error corrected" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630082977885">
@@ -276,10 +303,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1630680736687" />
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631221003308">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631223376922">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1631138221126" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1631223376922" />
     <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1631221003308" />
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1631022812636">
       <screen x="0" y="0" width="1920" height="1040" />
