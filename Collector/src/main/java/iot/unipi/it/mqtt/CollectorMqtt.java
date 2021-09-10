@@ -78,10 +78,6 @@ public class CollectorMqtt implements MqttCallback {
     }
 
     public void deliveryComplete(IMqttDeliveryToken token) {
-        try {
-            System.out.println(new String(token.getMessage().getPayload()));
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Delivery completed");
     }
 }

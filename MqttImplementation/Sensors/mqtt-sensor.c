@@ -70,11 +70,11 @@ static char sensor_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
 
 static double temperature = 21.0;
-bool ascending = true;
-bool actuating = false;
+static bool ascending = true;
+static bool actuating = false;
 
 // Periodic timer to check the state of the MQTT client
-#define STATE_MACHINE_PERIODIC     (CLOCK_SECOND >> 5)
+#define STATE_MACHINE_PERIODIC     (CLOCK_SECOND >> 1)
 static struct etimer periodic_timer;
 
 /*---------------------------------------------------------------------------*/

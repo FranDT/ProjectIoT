@@ -50,7 +50,7 @@ public class DBManager {
             pstRetrieveActMQTT = conn.prepareStatement(
                 "SELECT actIP, actName " +
                     "FROM rooms " +
-                    "WHERE sensIP = ?;"
+                    "WHERE sensName = ?;"
             );
 
 
